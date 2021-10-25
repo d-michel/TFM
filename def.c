@@ -5,11 +5,11 @@
 #include "lapacke.h"
 #include "include/def.h"
 
-/*int basisDimension(int N, int gamma) {
+int basisDimension(int N, int gamma) {
 	int dim;
 	dim = (int) ((gamma + 1)*(N + 1)*(N + 2)/2);
 	return dim;
-}*/
+}
 
 tvec * initVec() {
 	tvec * vec = malloc(sizeof(tvec));
@@ -29,17 +29,18 @@ tvec copy(tvec *vecin) {
 	return vecout;
 }
 
-tbasis * initBasis() {
-	tbasis * basis = malloc(sizeof(tbasis));
+tbasis * initBasis(int size_basis) {
+	tbasis * basis = malloc(sizeof(tbasis *));
 	basis->nvec = 0;
+	basis->data = malloc(size_basis*sizeof(tvec));
 	return basis;
 }
 
-void push(tbasis *basis, tvec *vec) {
-	if (basis->nvec == dim) {
+void push(tbasis *basis, tvec *vec, int max_size_basis) {
+	if (basis->nvec == max_size_basis) {
 		printf("\n Full tbasis \n");
 	} else {
-		basis->vectors[basis->nvec] = copy(vec);
+		basis->data[basis->nvec] = copy(vec);
 		basis->nvec++;
 	}
 }
@@ -58,9 +59,9 @@ tmatrix * initMatrix(int size_row, int size_col) {
 	return matrix;
 }
 
-tbasis * basisVectors() {
+tbasis * basisVectors(int N, int gamma, int dim) {
 		
-	tbasis * basis = initBasis();
+	tbasis * basis = initBasis(dim);
 	tvec * vec = initVec();
 	
 	for (int i = 0; i <= N; i++) {
@@ -75,7 +76,7 @@ tbasis * basisVectors() {
 			vec->n[2] = N2;
 			for (int j = 0; j <= gamma; j++) {
 				vec->nph = j;
-				push(basis, vec);
+				push(basis, vec, dim);
 			}
 			N0--;
 			N1++;
@@ -85,7 +86,7 @@ tbasis * basisVectors() {
 	return basis;
 }
 
-float Hact(tvec *vi, tvec *vj, float wf, float wn[3], float D, float f[3], float E) {
+float Hact(tvec *vi, tvec *vj, int N, float wf, float wn[3], float D, float f[3], float E) {
 	float H;
 	H = 0;
 	
@@ -142,13 +143,14 @@ float Hact(tvec *vi, tvec *vj, float wf, float wn[3], float D, float f[3], float
 	return H;
 }
 
-tmatrix * H(tbasis *basis, float wf, float wn[3], float D, float f[3], float E) {
+tmatrix * H(tbasis *basis, int N, int dim, float wf, float wn[3], float D, float f[3], float E) {
 	tmatrix * Hmatrix = initMatrix(dim,dim);
 	for (int i = 0; i < Hmatrix->nrow; i++) {
 		for (int j = 0; j < Hmatrix->ncol; j++) {
-			Hmatrix->data[i][j] = Hact(&basis->vectors[i], &basis->vectors[j], wf, wn, D, f, E);
+			Hmatrix->data[i][j] = Hact(&basis->data[i], &basis->data[j], N, wf, wn, D, f, E);
 		}
 	}
+	printf("Hamiltonian matrix created successfully.");
 	return Hmatrix;
 }
 

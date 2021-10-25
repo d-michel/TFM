@@ -3,17 +3,13 @@
 #include <math.h>
 #include <lapacke.h>
 
-#define N 10
-#define gamma 1
-#define dim (int) ((gamma + 1)*(N + 1)*(N + 2)/2)
-
 typedef struct {
 	int n[3];
 	int nph;
 } tvec;
 
 typedef struct {
-	tvec vectors[dim];
+	tvec * data;
 	int nvec;
 } tbasis;
 
@@ -27,16 +23,16 @@ tvec * initVec();
 
 tvec copy(tvec *vecin);
 
-tbasis * initBasis();
+tbasis * initBasis(int size_basis);
 
-void push(tbasis *basis, tvec *vec);
+void push(tbasis *basis, tvec *vec, int max_size_basis);
 
 tmatrix * initMatrix(int size_row, int size_col);
 
-tbasis * basisVectors();
+tbasis * basisVectors(int N, int gamma, int dim);
 
-float Hact(tvec *vi, tvec *vj, float wf, float wn[3], float D, float f[3], float E);
+float Hact(tvec *vi, tvec *vj, int N, float wf, float wn[3], float D, float f[3], float E);
 
-tmatrix * H(tbasis *basis, float wf, float wn[3], float D, float f[3], float E);
+tmatrix * H(tbasis *basis, int N, int dim, float wf, float wn[3], float D, float f[3], float E);
 
 float * eigenvalues(float *HMatrix);
