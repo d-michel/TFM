@@ -1,0 +1,9 @@
+reset
+set terminal png
+
+set xlabel "E/N"
+
+set output '150_6_03_6_15.png'
+plot '150_6_03_6_15.txt' using ($1/6):2 notitle w lines
+
+exit
