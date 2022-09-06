@@ -1,0 +1,21 @@
+reset
+set terminal png
+
+set xlabel "Energy"
+
+#set output 'On_sigma_00.png'
+#plot 'data.txt' using 1:3 t 'On sigma 00'# w lines
+
+#set output 'On_sigma_11.png'
+#plot 'data.txt' using 1:4 t 'On sigma 11'# w lines
+
+#set output 'On_sigma_22.png'
+#plot 'data.txt' using 1:5 t 'On sigma 22'# w lines
+
+#set output 'On_ada.png'
+#plot 'data.txt' using 1:6 t 'On ada'# w lines
+
+set output 'IPR_150_10_1_6.png'
+plot 'IPR_150_10_1_6.txt' using ($1/10):2 notitle# w lines
+
+exit
