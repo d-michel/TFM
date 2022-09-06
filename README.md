@@ -8,7 +8,7 @@ Trabajo de Fin de Máster en *Dinámica y termodinámica en sistemas cuánticos 
 
 ## Contenido:
 
-**code**
+**code** ----------------
   
   **def.c:** algoritmo implementado en C en el que se definen diversas funciones cuyo objetivo es la caracterización del hamiltoniano que rige la dinámica del modelo de Dicke en óptica cuántica.
     
