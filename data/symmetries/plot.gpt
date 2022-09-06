@@ -1,0 +1,9 @@
+reset
+set terminal png
+
+set xlabel "Energy"
+
+set output '50_10_1_12.png'
+plot '50_10_1_12.txt' using ($1/10):2 notitle
+
+exit
