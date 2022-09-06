@@ -7,11 +7,13 @@ Trabajo de Fin de Máster en *Dinámica y termodinámica en sistemas cuánticos 
   **Supervisor:** Armando Relaño Pérez (armando.relano@fis.ucm.es), Dpto. de Estructura de la Materia, Física Térmica y Electrónica.
 
 ## Contenido:
-  
-  **def.c/def.h:** algoritmo implementado en C en el que se definen diversas funciones cuyo objetivo es la caracterización del hamiltoniano que rige la dinámica del
-  modelo de Dicke en óptica cuántica.
-  
-  **main.c:** algoritmo implementado en C en el que se analiza la dinámica del modelo de Dicke y sus transiciones de fase entre caos e integrabilidad.
-  
-  **DickeMatrix.py:** algoritmo implementado en Python en el que se definen diversas funciones cuyo objetivo es la caracterización del hamiltoniano que rige la
-  dinámica del modelo de Dicke en óptica cuántica.
+  **code**
+    **def.c:** algoritmo implementado en C en el que se definen diversas funciones cuyo objetivo es la caracterización del hamiltoniano que rige la dinámica del modelo de Dicke en óptica cuántica.
+    **main.c:** algoritmo implementado en C en el que se llevan a cabo distintos análisis relativos a los indicadores estadísticos y la cantidad conservada propuesta.
+    
+    **include**
+      **def.h:** fichero de cabecera de funciones.
+    
+    **plotting**
+      **plot.m:** algoritmo implementado en Matlab para la creación de figuras a partir de ficheros de datos.
+      **fit_Ec.m:** algoritmo implementado en Matlab para el ajuste lineal relativo a la extracción de la energía crítica.
