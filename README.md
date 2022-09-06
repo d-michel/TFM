@@ -8,17 +8,17 @@ Trabajo de Fin de Máster en *Dinámica y termodinámica en sistemas cuánticos 
 
 ## Contenido:
 
-**code** ----------------
-  
+### code
+
   **def.c:** algoritmo implementado en C en el que se definen diversas funciones cuyo objetivo es la caracterización del hamiltoniano que rige la dinámica del modelo de Dicke en óptica cuántica.
     
   **main.c:** algoritmo implementado en C en el que se llevan a cabo distintos análisis relativos a los indicadores estadísticos y la cantidad conservada propuesta.
     
-  **include**
+#### include
     
    **def.h:** fichero de cabecera de funciones.
       
-  **plotting**
+#### plotting
     
    **plot.m:** algoritmo implementado en Matlab para la creación de figuras a partir de ficheros de datos.
       
