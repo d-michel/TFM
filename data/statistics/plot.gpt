@@ -1,0 +1,23 @@
+reset
+set terminal png
+
+set xlabel "Energy"
+set autoscale x
+set style fill solid 0.5 # fill style
+
+hist(x,width)=width*floor(x/width)
+
+binwidth = 1
+set output 'ratio.png'
+plot 'ratio.txt' using (hist($2,binwidth)):(1.0) smooth freq with boxes lc rgb"blue" t 'ratio'
+
+binwidth = 0.05
+set output 'min_ratio.png'
+plot 'ratio.txt' using (hist($3,binwidth)):(1.0) smooth freq with boxes lc rgb"blue" t 'min ratio'
+
+stats 'ratio.txt' using 2:3 nooutput
+
+set output 'window.png'
+plot 'window.txt' using 2:1 t 'window analysis' w lines,'' u 1:(STATS_mean_y)
+
+exit
